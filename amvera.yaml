@@ -1,0 +1,14 @@
+---
+meta:
+  environment: python
+  toolchain:
+    name: pip
+    version: 3.10
+build:
+  requirementsPath: requirements.txt
+  useCache: true
+run:
+  persistenceMount: /data
+  command: gunicorn --bind 0.0.0.0:5000 --workers 1 --worker-class gthread --threads
+    2 --timeout 600 app:app
+  containerPort: 5000
